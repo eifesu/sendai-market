@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SessionProvider } from "next-auth/react";
 import SessionWrapper from "@/components/SessionWrapper";
+import { Badge } from "@/components/ui/badge";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

@@ -3,6 +3,8 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { SessionProvider } from "next-auth/react";
+import SessionWrapper from "@/components/SessionWrapper";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -19,15 +21,17 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={jakarta.className + " text-white bg-zinc-900 tracking-[-0.04px] flex flex-col h-svh"}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="dark"
-                    enableSystem={true}
-                    disableTransitionOnChange
-                >
-                    <Navigation />
-                    {children}
-                </ThemeProvider>
+                <SessionWrapper>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="dark"
+                        enableSystem={true}
+                        disableTransitionOnChange
+                    >
+                        {/* <Navigation /> */}
+                        {children}
+                    </ThemeProvider>
+                </SessionWrapper>
             </body>
         </html>
     );

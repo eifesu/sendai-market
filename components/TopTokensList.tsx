@@ -2,12 +2,12 @@
 
 import { Badge } from "@/components/ui/badge";
 import { PiTrophyDuotone } from "react-icons/pi";
-import { TokenItem } from "../app/page";
 import { useQuery } from "@tanstack/react-query";
 import { getTopTokens } from "@/server/actions";
 import { useEffect, useState } from "react";
 import { Token } from "@prisma/client";
 import { Skeleton } from "./ui/skeleton";
+import { TokenItem } from "./TokenItem";
 
 export default function TopTokensList() {
     const [tokens, setTokens] = useState<Token[]>([])

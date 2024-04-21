@@ -1,8 +1,11 @@
+import { prisma } from "@/prisma/db";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
 import RedditProvider from "next-auth/providers/reddit";
 
 const authOptions: AuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
+	adapter: PrismaAdapter(prisma),
 	providers: [
 		RedditProvider({
 			clientId: process.env.REDDIT_CLIENT_ID,

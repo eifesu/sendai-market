@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { SessionProvider } from "next-auth/react";
-import SessionWrapper from "@/components/SessionWrapper";
-import { Badge } from "@/components/ui/badge";
+import SessionWrapper from "@/components/wrappers/SessionWrapper";
+import QueryProviders from "@/components/wrappers/QueryProviders";
+import { ThemeProvider } from "@/components/wrappers/ThemeProvider";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const jakarta = localFont({ src: "../public/fonts/PlusJakartaSans.ttf" });
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -21,7 +19,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={jakarta.className + " text-white bg-zinc-900 tracking-[-0.04px] flex flex-col h-svh"}>
+            <body className={jakarta.className + " text-white bg-zinc-900 tracking-[-0.04px] flex flex-col h-svh select-none"}>
                 <SessionWrapper>
                     <ThemeProvider
                         attribute="class"
@@ -29,8 +27,11 @@ export default function RootLayout({
                         enableSystem={true}
                         disableTransitionOnChange
                     >
-                        {/* <Navigation /> */}
-                        {children}
+                        <QueryProviders>
+
+                            {/* <Navigation /> */}
+                            {children}
+                        </QueryProviders>
                     </ThemeProvider>
                 </SessionWrapper>
             </body>

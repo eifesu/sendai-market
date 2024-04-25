@@ -4,13 +4,9 @@ import constants from "@/lib/constants";
 import { prisma } from "@/prisma/db";
 
 
-export async function getTopTokens() {
+export async function getTokens() {
 
     const tokens = await prisma.token.findMany({
-        take: 3,
-        orderBy: {
-            name: "desc",
-        },
     });
 
     return tokens;
@@ -42,10 +38,11 @@ export async function getHourlyTokenVariation(id: string) {
     return ((currentValue - lastHourValue) / lastHourValue) * 100
 }
 
-export async function sellToken(id: string) {
+export async function tradeToken(id: string, amount: number, comment: string) {
     return await prisma.transaction.create({
         data: {
-            amount: Math.ceil(Math.random() * 2 - 1),
+            comment,
+            amount,
             tokenId: id
         }
     })

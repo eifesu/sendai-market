@@ -1,11 +1,13 @@
 import { cn, shadeFromHex } from "@/lib/utils"
-import { getHourlyTokenVariation, getTokenValue, sellToken } from "@/server/actions"
+import { getHourlyTokenVariation, getTokenValue, tradeToken } from "@/server/actions"
 import { Token } from "@prisma/client"
 import { useEffect, useState } from "react"
 import { HiCubeTransparent } from "react-icons/hi"
 import { Button } from "./ui/button"
 import { CgArrowsExchangeAltV } from "react-icons/cg"
 import { PiCaretDownDuotone, PiCaretUpDuotone } from "react-icons/pi"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import TradeDialog from "./TradeDialog"
 
 function Variation({ variation }: { variation: number }) {
     return (
@@ -51,9 +53,7 @@ export function TokenItem({ token }: { token: Token }) {
                     <p className="font-bold font-mono">${value}</p>
                     <Variation variation={variation} />
                 </div>
-                <Button variant="secondary" size="sm" onClick={() => sellToken(token.id).then(() => {
-
-                })}>Trade <CgArrowsExchangeAltV size={16} /></Button>
+                <TradeDialog token={token} />
             </div>
 
         </div>

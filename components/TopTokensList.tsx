@@ -13,11 +13,12 @@ export default function TopTokensList() {
     const [tokens, setTokens] = useState<Token[]>([])
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            getTokens().then(tokens => setTokens(tokens))
-        }, 1000)
+        getTokens().then(tokens => setTokens(tokens))
+        // const interval = setInterval(() => {
+        //     getTokens().then(tokens => setTokens(tokens))
+        // }, 1000)
 
-        return () => clearInterval(interval)
+        // return () => clearInterval(interval)
     }, [])
 
     return (

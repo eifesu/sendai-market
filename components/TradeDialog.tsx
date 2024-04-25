@@ -18,7 +18,7 @@ export default function TradeDialog({ token }: { token: Token }) {
 
     useEffect(() => {
         getTokenValue(token.id).then(value => setValue(value))
-    }, [token])
+    }, [])
 
     return <Dialog>
         <DialogTrigger>
@@ -47,7 +47,7 @@ export default function TradeDialog({ token }: { token: Token }) {
                     </Button>
                 </div>
                 <Input type="text" id="email" placeholder="Comment (optional)" />
-                <Button variant="secondary" disabled={amount == 0} onClick={() => tradeToken(token.id, amount, comment).finally(() => {
+                <Button variant="secondary" disabled={amount == 0} onClick={async () => tradeToken(token.id, amount, comment).finally(() => {
 
                 })}>
                     Gamble

@@ -1,3 +1,5 @@
+"use client"
+
 import { cn, shadeFromHex } from "@/lib/utils"
 import { getHourlyTokenVariation, getTokenValue, tradeToken } from "@/server/actions"
 import { Token } from "@prisma/client"
@@ -33,7 +35,7 @@ export function TokenItem({ token }: { token: Token }) {
     useEffect(() => {
         getTokenValue(token.id).then(value => setValue(value))
         getHourlyTokenVariation(token.id).then(variation => setVariation(variation))
-    }, [token])
+    }, [])
 
     return (
         <div className="p-2 border-b border-b-secondary w-full flex justify-between items-center">

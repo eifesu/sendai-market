@@ -11,7 +11,6 @@ export function shadeFromHex(hexCode: string): "white" | "black" {
 	const g = parseInt(hexCode.slice(3, 5), 16);
 	const b = parseInt(hexCode.slice(5, 7), 16);
 
-	console.log(`r: ${r}, g: ${g}, b: ${b} for ${hexCode}`);
 	// if one of them is greater than 128, return black if not white
 	return r > 125 || g > 125 || b > 125 ? "black" : "white";
 }

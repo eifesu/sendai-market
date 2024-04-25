@@ -23,10 +23,11 @@ export default function TopTokensList() {
     return (
         <div className="flex items-center justify-center w-full flex-col gap-2 mb-12">
             <Badge variant="secondary"><PiTrophyDuotone size={12} className="mr-1" />All stocks</Badge>
-            <div className="max-h-[200px] bg-background rounded-md boder border-secondary-foreground p-2 mt-2 w-full overflow-scroll">
-                {tokens.length > 0 ? tokens.map(token => <TokenItem token={token} key={token.id} />) :
-                    <Skeleton className="w-full p-2" style={{ height: 57 * 3 + (8 * 3) }} />}
-            </div>
+            {tokens.length > 0 ?
+                <div className="max-h-[200px] bg-background rounded-md boder border-secondary-foreground p-2 mt-2 w-full overflow-scroll">
+                    {tokens.map(token => <TokenItem token={token} key={token.id} />)}
+                </div>
+                : <Skeleton className="h-[200px] w-full" />}
         </div>
     );
 }

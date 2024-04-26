@@ -34,10 +34,12 @@ model Transaction {
     updatedAt DateTime @updatedAt
 
     tokenId String
+    userId  String
     amount  Int
     comment String
 
     token Token @relation(fields: [tokenId], references: [id])
+    user  User  @relation(fields: [userId], references: [id])
 }
 
 model Holding {
@@ -65,9 +67,10 @@ model User {
 
     Authenticator Authenticator[]
 
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    holding   Holding[]
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+    holding      Holding[]
+    transactions Transaction[]
 }
 
 model Account {

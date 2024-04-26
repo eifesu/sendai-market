@@ -6,6 +6,7 @@ import SessionWrapper from "@/components/wrappers/SessionWrapper";
 import QueryProviders from "@/components/wrappers/QueryProviders";
 import { ThemeProvider } from "@/components/wrappers/ThemeProvider";
 import BottomNavigation from "@/components/BottomNavigation";
+import TopNavigation from "@/components/TopNavigation";
 
 const jakarta = Plus_Jakarta_Sans({
     weight: "variable",
@@ -32,6 +33,7 @@ export default function RootLayout({
                         defaultTheme="dark"
                         disableTransitionOnChange>
                         <QueryProviders>
+                            <TopNavigation />
                             <main className="flex flex-1 h-full w-full items-center justify-center overflow-scroll">
                                 {children}
                             </main>

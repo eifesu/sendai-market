@@ -4,16 +4,16 @@ import { PiChatCenteredTextDuotone, PiCurrencyCircleDollarDuotone, PiDiceFiveDuo
 
 export default function BottomNavigation() {
     return (
-        <div className="p-4 bg-secondary font-semibold flex justify-around items-center w-full border-b border-b-zinc-800">
+        <div className="p-2 bg-secondary font-semibold flex justify-around items-center w-full border-b border-b-zinc-800">
             <NavLink href="/">
                 <PiCurrencyCircleDollarDuotone fontSize={24} />
                 <p className='text-xs font-bold text-white'>Market</p>
             </NavLink>
-            <NavLink href="/" disabled>
+            <NavLink href="/casino" disabled>
                 <PiDiceFiveDuotone fontSize={24} />
                 <p className='text-xs font-bold text-white'>Casino</p>
             </NavLink>
-            <NavLink href="/" disabled>
+            <NavLink href="/lounge" disabled>
                 <PiChatCenteredTextDuotone fontSize={24} />
                 <p className='text-xs font-bold text-white'>Lounge</p>
             </NavLink>

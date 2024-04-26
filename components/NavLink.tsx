@@ -8,8 +8,8 @@ export function NavLink({ href, children, disabled }: { href: string; children: 
     const pathName = usePathname();
     return (
         <Link href={href} className={cn(
-            "flex flex-col items-center justify-center",
-            pathName === href ? "text-green-600" : "text-white",
+            "flex flex-col items-center justify-center p-2 rounded-md px-4",
+            pathName === href ? "text-green-600 bg-zinc-700 " : "text-white",
             disabled && "opacity-25 pointer-events-none text-muted-foreground"
         )}>
             {children}

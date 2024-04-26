@@ -21,13 +21,18 @@ export async function getTokens() {
     return tokens as TokenInfo[];
 }
 
-export async function getActitvities() {
-
+export async function getTransactions() {
+    return await prisma.transaction.findMany({
+        include: {
+            token: true
+        }
+    });
 }
 
 export async function tradeToken(id: string, amount: number, comment: string) {
     return await prisma.transaction.create({
         data: {
+            userId: "1",
             comment,
             amount,
             tokenId: id

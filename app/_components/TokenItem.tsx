@@ -33,7 +33,7 @@ export function TokenItem({ token }: { token: Token }) {
                     <HiCubeTransparent size={16} color={shadeFromHex(token.color)} />
                 </div>
                 <div className="flex flex-col items-start justify-start gap-0">
-                    <span className="font-mono font-bold"><span className="text-red-400">$</span>{token.token}</span>
+                    <span className="font-mono text-sm font-bold"><span className="text-red-400">$</span>{token.token}</span>
                     <span className="text-xs text-gray-400">({token.name})</span>
                 </div>
             </div>

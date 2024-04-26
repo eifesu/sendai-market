@@ -21,7 +21,7 @@ export default function TokensList() {
     return (
         <div className="flex flex-1 items-center justify-start w-full flex-col gap-2 p-4" >
             <div className="flex w-full gap-2">
-                <Input type="text" id="search" className="text-sm font-semibold" placeholder="Search token" value={search} onChange={
+                <Input type="text" id="search" className="text-xs font-semibold" placeholder="Search token" value={search} onChange={
                     (e) => setSearch(e.target.value)
                 } />
                 <ToggleGroup type="single" defaultChecked={true} defaultValue="name" onValueChange={
@@ -49,7 +49,7 @@ export default function TokensList() {
                         )
                         .map(token => <TokenItem token={token} key={token.id} />)}
                 </div>
-                : <Skeleton className="h-1/2 w-full" />}
+                : <Skeleton className="h-[250px] w-full" />}
         </div>
     );
 }

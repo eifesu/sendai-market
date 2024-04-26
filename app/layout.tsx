@@ -5,6 +5,7 @@ import "./globals.css";
 import SessionWrapper from "@/components/wrappers/SessionWrapper";
 import QueryProviders from "@/components/wrappers/QueryProviders";
 import { ThemeProvider } from "@/components/wrappers/ThemeProvider";
+import BottomNavigation from "@/components/BottomNavigation";
 
 const jakarta = Plus_Jakarta_Sans({
     weight: "variable",
@@ -23,7 +24,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <body className={jakarta.className + " text-white bg-zinc-900 tracking-[-0.04px] flex flex-col h-svh select-none"}>
                 <SessionWrapper>
                     <ThemeProvider
@@ -31,8 +32,10 @@ export default function RootLayout({
                         defaultTheme="dark"
                         disableTransitionOnChange>
                         <QueryProviders>
-                            {/* <Navigation /> */}
-                            {children}
+                            <main className="flex flex-1 h-full w-full items-center justify-center overflow-scroll">
+                                {children}
+                            </main>
+                            <BottomNavigation />
                         </QueryProviders>
                     </ThemeProvider>
                 </SessionWrapper>

@@ -1,24 +1,19 @@
 "use client"
 import { CgArrowsExchangeAltV } from "react-icons/cg";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Button } from "../../components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../../components/ui/dialog";
 import { Token } from "@prisma/client";
 import { MinusIcon, PlusCircle, PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getTokenValue, tradeToken } from "@/server/actions";
+import { tradeToken } from "@/server/actions";
 import { getToken } from "next-auth/jwt";
 import { cn } from "@/lib/utils";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
+import { Label } from "../../components/ui/label";
+import { Input } from "../../components/ui/input";
 
 export default function TradeDialog({ token }: { token: Token }) {
     const [amount, setAmount] = useState<number>(0)
-    const [value, setValue] = useState<number>(0)
     const [comment, setComment] = useState<string>("")
-
-    useEffect(() => {
-        getTokenValue(token.id).then(value => setValue(value))
-    }, [])
 
     return <Dialog>
         <DialogTrigger>
@@ -40,7 +35,8 @@ export default function TradeDialog({ token }: { token: Token }) {
                         <p className="font-extrabold text-3xl">{amount}</p>
                         <p className={cn("text-sm font-mono",
                             amount > 0 ? "text-red-400" : "text-green-400"
-                        )}>${- (amount * value)}<span className="text-xs font-bold text-muted-foreground">(${value})</span></p>
+                            // @ts-ignore
+                        )}>${- (amount * token.value)}<span className="text-xs font-bold text-muted-foreground">(${token.value})</span></p>
                     </div>
                     <Button variant="secondary" className="bg-green-700" onClick={() => setAmount(prev => prev + 1)}>
                         Buy <PlusIcon size={12} className="ml-2" />

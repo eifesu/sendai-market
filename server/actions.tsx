@@ -2,40 +2,27 @@
 
 import constants from "@/lib/constants";
 import { prisma } from "@/prisma/db";
+import { Token } from "@prisma/client";
 
-
+interface TokenInfo extends Token {
+    value: number;
+    hourlyVariation: number;
+}
 export async function getTokens() {
 
     const tokens = await prisma.token.findMany({
+        include: {
+            transactions: true
+        }
+
     });
 
-    return tokens;
+    // @ts-ignore
+    return tokens as TokenInfo[];
 }
 
-export async function getTokenValue(id: string) {
+export async function getActitvities() {
 
-    const transactions = await prisma.transaction.findMany({
-        where: {
-            tokenId: id
-        }
-    })
-
-    return transactions.reduce((acc, curr) => acc + curr.amount, constants.DEFAULT_TOKEN_VALUE)
-}
-
-export async function getHourlyTokenVariation(id: string) {
-
-
-    const transactions = await prisma.transaction.findMany({
-        where: {
-            tokenId: id,
-        }
-    })
-
-    const currentValue = transactions.reduce((acc, curr) => acc + curr.amount, constants.DEFAULT_TOKEN_VALUE)
-    const lastHourValue = transactions.filter(transaction => transaction.createdAt < new Date(Date.now() - 3600000)).reduce((acc, curr) => acc + curr.amount, constants.DEFAULT_TOKEN_VALUE)
-
-    return ((currentValue - lastHourValue) / lastHourValue) * 100
 }
 
 export async function tradeToken(id: string, amount: number, comment: string) {
